@@ -4,20 +4,21 @@ import styled from 'styled-components';
 
 
 
-const Join = () => {
-    const [name, setName] = useState<any>('');
-    const [room, setRoom] = useState<any>('');
+const Join = ({ chatStore }) => {
+    console.log("Join=", chatStore.name)
+    //const [name, setName] = useState<any>('');
+    // const [room, setRoom] = useState<any>('');
     return (
         <JoinOuterContainer>
             <JoinInnerContainer>
                 <h1 >Join</h1>
                 <JoiningInpoutName>
-                    <input placeholder="Name" type="text" onChange={(event) => setName(event.target.value)} />
+                    <input placeholder="Name" type="text" onChange={(event) => chatStore.updateName(event.target.value)} />
                 </JoiningInpoutName>
                 <JoiningInpoutPass>
-                    <input placeholder="Room" type="text" onChange={(event) => setRoom(event.target.value)} />
+                    <input placeholder="Room" type="text" onChange={(event) => chatStore.updateRoom(event.target.value)} />
                 </JoiningInpoutPass>
-                <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
+                <Link onClick={e => (!chatStore.name || !chatStore.room) ? e.preventDefault() : null} to={`/chat`}>
                     <ButtonDiv>
                         <button type="submit">Sign In</button>
                     </ButtonDiv>

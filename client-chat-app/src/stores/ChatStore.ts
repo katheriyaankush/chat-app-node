@@ -12,16 +12,13 @@ export default class ChatStore {
     }
 
     @action updateName(val) {
-        console.log("Hii.", val);
         return this.name = val;
     }
     @action updateRoom(val) {
-        console.log("Hii.", val);
 
         return this.room = val;
     }
     @action updateUsers(val) {
-
         return this.users = val;
 
     }

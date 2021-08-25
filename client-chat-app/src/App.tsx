@@ -3,17 +3,19 @@ import React from 'react';
 import Chat from './components/Chat/Chat';
 import Join from './components/Join/Join';
 
-export default class App extends React.Component {
+
+export default class App extends React.Component<{ chatStore }> {
+
 
   render() {
-
+    console.log("GHJK==", this.props.chatStore.name)
+    //  const obj: any = { value: "Ankush" }
     return (
       <div>
 
         <Router>
-          <Route path='/' exact component={Join} />
-          <Route path='/chat' component={Chat} />
-
+          <Route path='/' exact component={() => (<Join chatStore={this.props.chatStore} />)} />
+          <Route path='/chat' component={() => (<Chat chatStore={this.props.chatStore} />)} />
         </Router>
       </div>
     );

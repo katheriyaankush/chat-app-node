@@ -71,7 +71,6 @@ const MessageContainer = styled.div`
     justify-content: flex-end;
     padding: 0 5%;
     margin-top: 3px;
-
     justify-content: flex-end;
 
 `;
@@ -85,6 +84,12 @@ const MessageBoxBlue = styled.div`
     display: inline-block;
     max-width: 80%;
     background: #2979FF;
+    :hover{
+    -webkit-transform: scale(1.06);
+    -ms-transform: scale(1.06);
+    transform: scale(1.06);
+    transition: .3s ease;
+    }
 >p{
     width: 100%;
     letter-spacing: 0;
@@ -102,7 +107,6 @@ display: flex;
     letter-spacing: 0.3px;
     margin-left: 22px;
     margin-bottom: -13px;
-
     padding-left: 10px;
 
 `;
@@ -124,6 +128,12 @@ const MessageBoxGray = styled.div`
     display: inline-block;
     max-width: 80%;
     background: #F3F3F3;
+    :hover{
+    -webkit-transform: scale(1.06);
+    -ms-transform: scale(1.06);
+    transform: scale(1.06);
+    transition: .3s ease;
+    }
 >p{
     width: 100%;
     letter-spacing: 0;

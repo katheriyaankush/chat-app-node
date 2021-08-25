@@ -1,51 +1,43 @@
 import React, { useState, useEffect } from "react";
-import queryString from 'query-string';
 import styled from 'styled-components';
 import io from 'socket.io-client';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
 import Messages from "../Messages/Messages";
 import { observer } from 'mobx-react';
-import ChatStore from '../../stores/ChatStore'
-
-const chatStore = new ChatStore();
-
+import { Redirect } from 'react-router';
+import Join from '../Join/Join';
 
 
-export interface ChatProps {
-    location: any,
-    socket: any,
-    message: any,
-    ScrollToBottom: any,
-    time: number,
-    messages: any,
 
-}
+
 let socket;
 
 
 
-const Chat: React.FC<ChatProps> = observer(({ location }) => {
-
+const Chat = observer(({ chatStore }) => {
 
     const [message, setMessage] = useState<any>('');
     const [messages, setMessages] = useState<any>('');
-    //  const [users, setUsers] = useState<any>('');
+    const [error, setError] = useState<any>(false);
 
     const ENDPOINT = 'localhost:5000';
 
     useEffect(() => {
-        const { name, room } = queryString.parse(location.search);
+        const name = chatStore.name;
+        const room = chatStore.room;
         socket = io(ENDPOINT);
-        chatStore.updateName(name);
-        chatStore.updateRoom(room);
+        chatStore.updateName(chatStore.name);
+        chatStore.updateRoom(chatStore.room);
         socket.emit('join', { name, room }, (error) => {
             if (error) {
                 alert(error);
+                setError(true);
+
             }
         });
 
-    }, [ENDPOINT, location.search]);
+    }, [ENDPOINT, chatStore.name, chatStore.room]);
 
     useEffect(() => {
         socket.on('message', (message) => {
@@ -53,7 +45,6 @@ const Chat: React.FC<ChatProps> = observer(({ location }) => {
         })
 
         socket.on("roomData", ({ users }) => {
-            // setUsers(users);
             chatStore.updateUsers(users)
         });
     }, [])
@@ -68,6 +59,7 @@ const Chat: React.FC<ChatProps> = observer(({ location }) => {
 
     return (
         <OuterContainer>
+            {error ? <Redirect to="/" /> : null}
             <Container>
                 <InfoBar room={chatStore.room} />
                 <Messages messages={messages} name={chatStore.name} />
