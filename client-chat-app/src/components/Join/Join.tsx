@@ -5,9 +5,6 @@ import styled from 'styled-components';
 
 
 const Join = ({ chatStore }) => {
-    console.log("Join=", chatStore.name)
-    //const [name, setName] = useState<any>('');
-    // const [room, setRoom] = useState<any>('');
     return (
         <JoinOuterContainer>
             <JoinInnerContainer>
