@@ -67,8 +67,7 @@ const Chat = observer(({ chatStore }) => {
             </Container>
         </OuterContainer>
     )
-}
-)
+})
 export default Chat;
 
 

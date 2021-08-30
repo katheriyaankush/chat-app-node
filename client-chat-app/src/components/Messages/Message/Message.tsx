@@ -59,9 +59,7 @@ const SentTextRight = styled.div`
     letter-spacing: 0.3px;
     margin-right: 22px;
     margin-bottom: -13px;
-
     padding-right: 10px;
-
     justify-content: flex-end;
 
 `;
