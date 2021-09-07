@@ -1,27 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react';
+
 
 export interface InputProps {
-    setMessage: (value: any) => void,
-    sendMessage: (event: any) => void
-    message: any,
+    messageStore: any
 
 }
 
-const Input: React.FC<InputProps> = ({ setMessage, sendMessage, message }) => (
+const Input: React.FC<InputProps> = observer(({ messageStore }) => (
 
     <Form>
         <input
             type="text"
             placeholder="Type a message..."
-            value={message}
-            onChange={({ target: { value } }) => setMessage(value)}
-            onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
+            value={messageStore.message}
+            onChange={({ target: { value } }) => messageStore.setMessage(value)}
+            onKeyPress={event => event.key === 'Enter' ? messageStore.sendMessage(event) : null}
         />
-        <button onClick={e => sendMessage(e)}> Send </button>
+        <button onClick={e => messageStore.sendMessage(e)}> Send </button>
     </Form>
 
-)
+))
 
 export default Input;
 

@@ -1,21 +1,20 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
 
-const Join = ({ chatStore }) => {
+const Join = ({ sessionStore }) => {
     return (
         <JoinOuterContainer>
             <JoinInnerContainer>
                 <h1 >Join</h1>
                 <JoiningInpoutName>
-                    <input placeholder="Name" type="text" onChange={(event) => chatStore.updateName(event.target.value)} />
+                    <input placeholder="Name" type="text" onChange={(event) => sessionStore.updateName(event.target.value)} />
                 </JoiningInpoutName>
                 <JoiningInpoutPass>
-                    <input placeholder="Room" type="text" onChange={(event) => chatStore.updateRoom(event.target.value)} />
+                    <input placeholder="Room" type="text" onChange={(event) => sessionStore.updateRoom(event.target.value)} />
                 </JoiningInpoutPass>
-                <Link onClick={e => (!chatStore.name || !chatStore.room) ? e.preventDefault() : null} to={`/chat`}>
+                <Link onClick={e => (!sessionStore.name || !sessionStore.room) ? e.preventDefault() : null} to={`/chat`}>
                     <ButtonDiv>
                         <button type="submit">Sign In</button>
                     </ButtonDiv>
