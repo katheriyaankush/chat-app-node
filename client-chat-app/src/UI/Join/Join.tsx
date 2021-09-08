@@ -6,8 +6,11 @@ import {
   JoiningInpoutPass,
   ButtonDiv,
 } from "./Join.Styled";
+import JoinViewModel from "./JoinViewModel";
 
+let joinViewModel: JoinViewModel;
 const Join = ({ sessionStore }) => {
+  joinViewModel = new JoinViewModel(sessionStore);
   return (
     <JoinOuterContainer>
       <JoinInnerContainer>
@@ -16,20 +19,18 @@ const Join = ({ sessionStore }) => {
           <input
             placeholder="Name"
             type="text"
-            onChange={(event) => sessionStore.updateName(event.target.value)}
+            onChange={(event) => joinViewModel.updateName(event)}
           />
         </JoiningInpoutName>
         <JoiningInpoutPass>
           <input
             placeholder="Room"
             type="text"
-            onChange={(event) => sessionStore.updateRoom(event.target.value)}
+            onChange={(event) => joinViewModel.updateRoom(event)}
           />
         </JoiningInpoutPass>
         <Link
-          onClick={(e) =>
-            !sessionStore.name || !sessionStore.room ? e.preventDefault() : null
-          }
+          onClick={(event) => joinViewModel.gotoChatRoom(event)}
           to={`/chat`}
         >
           <ButtonDiv>
@@ -40,5 +41,4 @@ const Join = ({ sessionStore }) => {
     </JoinOuterContainer>
   );
 };
-
 export default Join;
