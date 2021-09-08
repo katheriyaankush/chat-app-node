@@ -7,7 +7,6 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./user')
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-//app.use(cors());
 app.use(router);
 
 const port = process.env.PORT || 5000;
@@ -19,6 +18,7 @@ io.on('connect', (socket) => {
         const { error, user } = addUser({ id: socket.id, name, room });
         if (error) return callback(error);
         socket.join(user.room);
+        console.log("IntialSoket", socket.id)
 
         let date = new Date();
         let hours = date.getHours();
@@ -34,7 +34,6 @@ io.on('connect', (socket) => {
         io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
 
         callback();
-        console.log('NameOB', name, room);
     })
     socket.on('sendMessage', (message, callback) => {
 
@@ -48,7 +47,6 @@ io.on('connect', (socket) => {
         hours = hours ? hours : 12; // the hour '0' should be '12'
         minutes = minutes < 10 ? '0' + minutes : minutes;
         let timeC = hours + ':' + minutes + ' ' + ampm;
-        console.log("User Room", user);
         io.to(user.room).emit('message', { user: user.name, time: timeC, text: message });
         callback();
     })
