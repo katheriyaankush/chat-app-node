@@ -15,8 +15,9 @@ export default class JoinViewModel {
     this.sessionStore.updateRoom(event.target.value);
   }
 
-  gotoChatRoom(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void {
-    if (!(this.sessionStore.name || this.sessionStore.room))
-      event.preventDefault();
+  gotoChatRoom(): void {
+    if (this.sessionStore.name || this.sessionStore.room) {
+      this.sessionStore.isJoined(true);
+    }
   }
 }

@@ -9,12 +9,19 @@ import {
 
 export interface InfoBarProps {
   room: any;
+  error: boolean;
 }
-const InfoBar: React.FC<InfoBarProps> = ({ room }) => (
+const InfoBar: React.FC<InfoBarProps> = ({ room, error }) => (
   <InfoBarMain>
     <LeftInnerContainer>
-      <img src={onlineIcon} alt="online icon" />
-      <h3>{room}</h3>
+      {!error ? (
+        <>
+          <img src={onlineIcon} alt="online icon" />
+          <h3>{room} </h3>
+        </>
+      ) : (
+        <p>Username already exists</p>
+      )}
     </LeftInnerContainer>
     <RightInnerContainer>
       <a href="/">

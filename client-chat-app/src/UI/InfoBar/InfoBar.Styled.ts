@@ -11,7 +11,7 @@ export const InfoBarMain = styled.div`
 `;
 
 export const LeftInnerContainer = styled.div`
-  flex: 0.5;
+  flex: 0.8;
   display: flex;
   align-items: center;
   margin-left: 5%;
@@ -19,11 +19,17 @@ export const LeftInnerContainer = styled.div`
   > img {
     margin-right: 5%;
   }
+
+  > p {
+    color: #fad4d4;
+    font-weight: 700;
+    font-size: 20px;
+  }
 `;
 
 export const RightInnerContainer = styled.div`
   display: flex;
-  flex: 0.5;
+  flex: 0.2;
   justify-content: flex-end;
   margin-right: 5%;
 `;

@@ -1,4 +1,3 @@
-import React from "react";
 import SessionStore from "../../BusinessLogic/SessionStore";
 
 export default class ChatViewModel {
@@ -13,5 +12,9 @@ export default class ChatViewModel {
 
   sessionMessage(socket): void {
     this.sessionStore.sessionMessage(socket);
+  }
+
+  gotoJoinRoom(): void {
+    this.sessionStore.isJoined(false);
   }
 }

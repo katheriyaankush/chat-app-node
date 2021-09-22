@@ -20,6 +20,7 @@ const Chat = observer(({ sessionStore, messageStore }) => {
     chatViewModel.initialConnection(socket);
     if (sessionStore.error) {
       alert("Somethig is wrong");
+      chatViewModel.gotoJoinRoom();
     }
   }, [ENDPOINT, sessionStore.name, sessionStore.room]);
 
@@ -29,11 +30,13 @@ const Chat = observer(({ sessionStore, messageStore }) => {
 
   return (
     <OuterContainer>
-      {sessionStore.error ? <Redirect to="/" /> : null}
       <Container>
-        <InfoBar room={sessionStore.room} />
+        <InfoBar room={sessionStore.room} error={sessionStore.error} />
+
         <Messages messages={sessionStore.messages} name={sessionStore.name} />
-        <Input messageStore={messageStore} socket={socket} />
+        {!sessionStore.error ? (
+          <Input messageStore={messageStore} socket={socket} />
+        ) : null}
       </Container>
     </OuterContainer>
   );

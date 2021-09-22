@@ -7,6 +7,7 @@ export default class SessionStore {
   @observable error = false;
   @observable messages = "";
   @observable message = "";
+  @observable isJoin = false;
 
   constructor() {
     makeObservable(this);
@@ -49,5 +50,7 @@ export default class SessionStore {
     return (this.message = val);
   }
 
-
+  @action isJoined(val) {
+    return (this.isJoin = val);
+  }
 }

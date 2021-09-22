@@ -29,14 +29,10 @@ const Join = ({ sessionStore }) => {
             onChange={(event) => joinViewModel.updateRoom(event)}
           />
         </JoiningInpoutPass>
-        <Link
-          onClick={(event) => joinViewModel.gotoChatRoom(event)}
-          to={`/chat`}
-        >
-          <ButtonDiv>
-            <button type="submit">Sign In</button>
-          </ButtonDiv>
-        </Link>
+
+        <ButtonDiv>
+          <button onClick={() => joinViewModel.gotoChatRoom()}>Sign In</button>
+        </ButtonDiv>
       </JoinInnerContainer>
     </JoinOuterContainer>
   );
