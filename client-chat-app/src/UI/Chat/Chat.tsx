@@ -3,7 +3,6 @@ import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
 import Messages from "../Messages/Messages";
 import { observer } from "mobx-react";
-import { Redirect } from "react-router";
 import { OuterContainer, Container } from "./Chat.Styled";
 import io from "socket.io-client";
 import ChatViewModel from "./ChatViewModel";
